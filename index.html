@@ -16,8 +16,21 @@
             <a href="#corretores">Corretores</a>
             <a href="#contato">Contato</a>
         </p>
-
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="menu-mobile" id="menuMobile">
+        <button class="menu-fechar" id="menuFechar" aria-label="Fechar menu">&#10005;</button>
+        <a href="#sobre" class="menu-link">Sobre</a>
+        <a href="#serviços" class="menu-link">Serviços</a>
+        <a href="#corretores" class="menu-link">Corretores</a>
+        <a href="#contato" class="menu-link">Contato</a>
+    </nav>
     <div class="banner">
         <img src="img/banner.jpg" alt="Banner principal">
     </div>
@@ -53,5 +66,28 @@
 Parágrafo: Se ficou interessado em nos conhecer ou se tiver dúvidas entre em contato conosco através de um dos telefones abaixo:
 " frameborder="0"></iframe>
 
-       
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const menuMobile = document.getElementById('menuMobile');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuFechar = document.getElementById('menuFechar');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function abrirMenu() {
+            menuMobile.classList.add('aberto');
+            menuOverlay.classList.add('ativo');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharMenu() {
+            menuMobile.classList.remove('aberto');
+            menuOverlay.classList.remove('ativo');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', abrirMenu);
+        menuFechar.addEventListener('click', fecharMenu);
+        menuOverlay.addEventListener('click', fecharMenu);
+        menuLinks.forEach(link => link.addEventListener('click', fecharMenu));
+    </script>
 </body>
